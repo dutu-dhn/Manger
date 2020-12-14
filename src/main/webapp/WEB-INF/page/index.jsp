@@ -32,59 +32,6 @@
 
 </head>
 <body  style="padding-top: 55px;" οnlοad="getNowDate()">
-<%--个人资料卡模态框--%>
-<div  class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      <div class="modal-header" align="center">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  <span ><h4 class="modal-title">我的信息</h4></span>
-      </div>
-		<div class="modal-body">
-			<form class="form-horizontal">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">用户名</label>
-					<div class="col-sm-9">
-						<input type="text" name="uname" class="form-control" id="user_update_input_uname" placeholder="${user.uname}">
-						<span class="help-block"></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">密码</label>
-					<div class="col-sm-9">
-						<input type="text" name="password" class="form-control" id="user_update_input_password" placeholder="${user.password}">
-						<span class="help-block"></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">手机号</label>
-					<div class="col-sm-9">
-						<input type="text" name="tel" class="form-control" id="user_update_input_tel" placeholder="${user.tel}">
-						<span class="help-block"></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">邮箱</label>
-					<div class="col-sm-9">
-						<input type="text" name="email" class="form-control" id="user_update_input_email" placeholder="${user.email}">
-						<span class="help-block"></span>
-					</div>
-				</div>
-<%--				<div class="form-group">
-					<label class="col-sm-2 control-label">注册时间</label>
-					<div class="col-sm-9">
-						<p class="form-control-static">${user.regtime}</p>
-					</div>
-				</div>--%>
-			</form>
-		</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" id="userinfo_update_btn" u-id="${user.id}">更新</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- 员工添加的模态框 -->
 <div class="modal fade" id="userAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -174,7 +121,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  ${user.uname} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#" id="myinfo" >我的资料</a></li>
+            <li><a href="#" id="myinfo" onclick="myinfoclick()" >我的资料</a></li>
             <li><a href="${APP_PATH }/exit">切换账号</a></li>
             <li><a href="#">设置</a></li>
             <li role="separator" class="divider"></li>
@@ -242,7 +189,9 @@
 		 <div id="imgshow" style="display:none;">
 			<iframe id="iframe1" frameborder='0' scrolling='auto' src="${APP_PATH }/img.jsp" width="100%" height="600px"></iframe>
 		</div>
-		
+		<div id="infoshow" style="display:none;">
+			<iframe id="iframe1" frameborder='0' scrolling='auto' src="${APP_PATH }/myinfo.jsp" width="100%" height="600px"></iframe>
+		</div>
 	</div>
 	  
  </div>
@@ -258,6 +207,7 @@ function usershowaclick() {
 	/* $("#homeshow").toggle();
 	$("#usershowdiv").toggle(); */
 	$("#imgshow").css("display","none");
+	$("#infoshow").css("display","none");
 	$("#homeshow").css("display","none");
 	$("#usershowdiv").css("display","");
 }
@@ -265,6 +215,7 @@ function homeclick() {
 	/* $("#homeshow").toggle();
 	$("#usershowdiv").toggle(); */
 	$("#homeshow").css("display","");
+	$("#infoshow").css("display","none");
 	$("#usershowdiv").css("display","none");
 	$("#imgshow").css("display","none");
 }
@@ -272,34 +223,18 @@ function imgclick() {
 	/* $("#homeshow").toggle();
 	$("#usershowdiv").toggle(); */
 	$("#homeshow").css("display","none");
+	$("#infoshow").css("display","none");
 	$("#usershowdiv").css("display","none");
 	$("#imgshow").css("display","");
 }
-$("#userinfo_update_btn").click(function(){
-	//判断之前的邮箱,手机号,ajax用户名校验是否成功。
-	/*	if($(this).attr("ajax-uname")=="error"){
-            return false;
-        }
-        if($(this).attr("ajax-email")=="error"){
-            return false;
-        }
-        if($(this).attr("ajax-tel")=="error"){
-            return false;
-        }*/
-
-	console.log($("#mymodel form").serialize());
-	//2、发送ajax请求保存更新的员工数据
-	$.ajax({
-		url:path+"/user/"+$(this).attr("u-id"),
-		type:"PUT",
-		data:$("#mymodel form").serialize(),
-		success:function(result){
-			alert(result.msg);
-			//1、关闭对话框
-			$("#userUpdateModal").modal("hide");
-		}
-	});
-});
+function myinfoclick() {
+	/* $("#homeshow").toggle();
+	$("#usershowdiv").toggle(); */
+	$("#homeshow").css("display","none");
+	$("#infoshow").css("display","");
+	$("#usershowdiv").css("display","none");
+	$("#imgshow").css("display","none");
+}
 
 	setInterval("timenow.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
 </script> 
