@@ -54,7 +54,7 @@
 	</bean> 
 	<!--开启基于注解的事务，使用xml配置形式的事务（必要主要的都是使用配置式）  -->
 	<aop:config> 
- 		 <aop:pointcut expression="execution(* com.YYS.service.impl.*.*(..))" id="txpoint"/> 
+ 		 <aop:pointcut expression="execution(* com.YYS.service.*.*(..))" id="txpoint"/>
  		 <!--配置事务增强，事务如何切入  -->
  		 <aop:advisor advice-ref="txAdvice" pointcut-ref="txpoint"/> 
 	</aop:config>

@@ -104,7 +104,7 @@
       	<!-- 时间 -->
         <li ><a href="#"  style="pointer-events: none;"><font id="timenow"></font> </a></li>
         <!-- 刷新 -->
-        <li><a  href="#"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a></li>
+        <li><a onclick="location.reload();" href="#"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a></li>
       </ul>
       <!-- 搜索 -->
       <form class="navbar-form navbar-left">
@@ -210,6 +210,7 @@ function usershowaclick() {
 	$("#infoshow").css("display","none");
 	$("#homeshow").css("display","none");
 	$("#usershowdiv").css("display","");
+    usermanger();
 }
 function homeclick() {
 	/* $("#homeshow").toggle();

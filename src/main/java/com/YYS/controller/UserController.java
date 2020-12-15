@@ -132,6 +132,7 @@ public class UserController {
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
 	public Msg updUser(User user, HttpServletRequest request) {
 		userService.updUser(user);
+		User upduser = userService.getUser(user.getId());
 		return Msg.success();
 	}
 	/**

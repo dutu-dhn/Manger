@@ -7,10 +7,10 @@
 	var pathName = document.location.pathname;
     var index = pathName.substr(1).indexOf("/");
     var path = pathName.substr(0,index+1);
-   $(function(){
+/*   $(function(){
 		//去首页
-    	usermanger();
-	}); 
+    	//usermanger();
+	}); */
     
 
 
@@ -170,14 +170,9 @@
 			backdrop:"static"
 		});
 	});
-	//给我的资料附加一个编辑
-	$("#myinfo").click(function(){
-		
-		//清除表单数据（表单完整重置（表单的数据，表单的样式））
-		$("#myModal").modal({
-			backdrop:"static"
-		});
-	});
+	//给更新个人资料按钮加一个模态框
+
+
 	//通过ID来查询用户显示到模态框
 	function getUser(id) {
 		$.ajax({
@@ -219,7 +214,6 @@
 			}
 		});
 	});
-//点击更新，更新个人信息
 
 	//校验邮箱格式
 	 $("#user_update_input_email").change(function(){
